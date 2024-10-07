@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="post-bar">
+	<form method="POST" action="">
+		{% csrf_token %}
+		{{ form.chismis }}
+		<button type="submit">Post</button>
+	</form>
+</div>
+
+<div class="post-list">
+	<h2>All Chismis</h2>
+	<ul>
+		{% for chismis in all_chismis reversed %}
+		<li>
+			<span class="date">{{ chismis.chismis_date }}</span>
+			{{ chismis.chismis }}
+		</li>
+		{% empty %}
+		<li>No chismis yet. Be the first to chismis something!</li>
+		{% endfor %}
+	</ul>
+</div>
+{% endblock %}
